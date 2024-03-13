@@ -55,6 +55,7 @@ tasks.register("generateBuildConfig") {
                 const val GROUP = "${project.group}"
                 const val DISCORD_TOKEN = "${localProps["discordToken"]}"
                 const val OPENAI_KEY = "${localProps["openaiKey"]}"
+                const val MISTRAL_KEY = "${localProps["mistralKey"]}"
             }
         """.trimIndent())
     }

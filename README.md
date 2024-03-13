@@ -7,6 +7,7 @@ Fill it with the discord bot token and the OpenAI api key
 ```gradle
 discordToken=
 openaiKey=
+mistralKey=
 ```
 
 Run the command

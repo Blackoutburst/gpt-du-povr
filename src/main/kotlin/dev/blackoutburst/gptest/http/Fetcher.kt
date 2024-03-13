@@ -19,15 +19,13 @@ object Fetcher {
 
     private val HEADER = "application/json; charset=utf-8".toMediaType()
 
-    private const val URL = "https://api.openai.com/v1"
-
-    fun get(endpoint: String, onError: () -> Unit = {}): String? {
+    fun get(url: String, key: String, endpoint: String, onError: () -> Unit = {}): String? {
         return try {
             val request = Request.Builder()
-                .url("$URL/$endpoint")
+                .url("$url/$endpoint")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
-                .addHeader("Authorization", "Bearer ${BuildConfig.OPENAI_KEY}")
+                .addHeader("Authorization", "Bearer $key")
                 .build()
 
             client.newCall(request).execute().use { response ->
@@ -46,15 +44,15 @@ object Fetcher {
         }
     }
 
-    fun post(endpoint: String, json: String, onError: () -> Unit = {}): String? {
+    fun post(url: String, key: String, endpoint: String, json: String, onError: () -> Unit = {}): String? {
         return try {
             val body = json.toRequestBody(HEADER)
 
             val request = Request.Builder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
-                .addHeader("Authorization", "Bearer ${BuildConfig.OPENAI_KEY}")
-                .url("$URL/$endpoint")
+                .addHeader("Authorization", "Bearer $key")
+                .url("$url/$endpoint")
                 .post(body)
                 .build()
 

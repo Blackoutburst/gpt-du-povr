@@ -1,4 +1,4 @@
-package dev.blackoutburst.gptest.openai
+package dev.blackoutburst.gptest.mistral
 
 import dev.blackoutburst.gptest.BuildConfig
 import dev.blackoutburst.gptest.http.Fetcher
@@ -8,13 +8,13 @@ import dev.blackoutburst.gptest.openai.dataclass.Message
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-object OpenAI {
+object Mistral {
 
     private val json = Json { ignoreUnknownKeys = true }
     private val messages = mutableListOf<Message>()
 
     fun addMessage(message: Message) {
-        if (messages.size > 50) {
+        if (messages.size > 30) {
             val iterator = messages.iterator()
             while (iterator.hasNext()) {
                 val msg = iterator.next()
@@ -30,12 +30,12 @@ object OpenAI {
     fun chat(
         message: String,
         role: String = "user",
-        model: String = "gpt-4-turbo-preview"
+        model: String = "open-mixtral-8x7b"
     ) : String {
         addMessage(Message(role, message))
 
         val body = json.encodeToString(ChatRequest(messages, model))
-        val res = Fetcher.post("https://api.openai.com/v1", BuildConfig.OPENAI_KEY, "chat/completions", body)
+        val res = Fetcher.post("https://api.mistral.ai/v1", BuildConfig.MISTRAL_KEY, "chat/completions", body)
         return if (res != null) {
             val output = json.decodeFromString<ChatObject>(res)
             addMessage(Message("assistant", output.choices.first().message.content))
