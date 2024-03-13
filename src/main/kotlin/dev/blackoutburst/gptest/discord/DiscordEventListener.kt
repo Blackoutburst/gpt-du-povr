@@ -8,9 +8,12 @@ class DiscordEventListener : ListenerAdapter() {
 
     override fun onMessageReceived(event: MessageReceivedEvent) {
         if (event.member == null || event.member!!.user.isBot) return
-
+        if (!event.message.contentRaw.startsWith("!")) return
         event.channel.sendTyping().queue()
-        val botMsg = OpenAI.chat("[${event.member!!.effectiveName}] ${event.message.contentRaw}")
-        event.channel.sendMessage(botMsg).queue()
+
+        OpenAI.chat("[${event.member!!.effectiveName}] ${event.message.contentRaw}").let {
+            event.channel.sendMessage(it).queue()
+        }
+
     }
 }
