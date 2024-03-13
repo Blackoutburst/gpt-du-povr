@@ -2,7 +2,7 @@ package dev.blackoutburst.gptest
 
 import dev.blackoutburst.gptest.discord.DiscordEventListener
 import dev.blackoutburst.gptest.openai.OpenAI
-import dev.blackoutburst.gptest.openai.dataclass.Message
+import dev.blackoutburst.gptest.dataclass.Message
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity

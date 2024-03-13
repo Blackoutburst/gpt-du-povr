@@ -1,4 +1,4 @@
-package dev.blackoutburst.gptest.openai.dataclass
+package dev.blackoutburst.gptest.dataclass
 
 import kotlinx.serialization.Serializable
 

@@ -2,9 +2,9 @@ package dev.blackoutburst.gptest.openai
 
 import dev.blackoutburst.gptest.BuildConfig
 import dev.blackoutburst.gptest.http.Fetcher
-import dev.blackoutburst.gptest.openai.dataclass.ChatObject
-import dev.blackoutburst.gptest.openai.dataclass.ChatRequest
-import dev.blackoutburst.gptest.openai.dataclass.Message
+import dev.blackoutburst.gptest.dataclass.ChatObject
+import dev.blackoutburst.gptest.dataclass.ChatRequest
+import dev.blackoutburst.gptest.dataclass.Message
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
