@@ -4,6 +4,7 @@ local.properties
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+output.png
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
