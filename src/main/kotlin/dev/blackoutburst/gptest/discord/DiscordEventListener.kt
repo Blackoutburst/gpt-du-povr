@@ -10,6 +10,7 @@ class DiscordEventListener : ListenerAdapter() {
         if (event.member == null || event.member!!.user.isBot) return
 
         event.channel.sendTyping().queue()
-        OpenAI.chat("[${event.member!!.effectiveName}] ${event.message.contentRaw}")
+        val botMsg = OpenAI.chat("[${event.member!!.effectiveName}] ${event.message.contentRaw}")
+        event.channel.sendMessage(botMsg).queue()
     }
 }
