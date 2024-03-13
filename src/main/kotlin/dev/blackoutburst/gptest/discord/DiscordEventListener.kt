@@ -11,7 +11,7 @@ class DiscordEventListener : ListenerAdapter() {
         if (!event.message.contentRaw.startsWith("!")) return
         event.channel.sendTyping().queue()
 
-        OpenAI.chat("[${event.member!!.effectiveName}] ${event.message.contentRaw}").let {
+        OpenAI.chat("[${event.member!!.effectiveName}] ${event.message.contentRaw.removePrefix("!").trim()}").let {
             event.channel.sendMessage(it).queue()
         }
 
