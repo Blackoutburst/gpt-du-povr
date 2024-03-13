@@ -11,7 +11,10 @@ import java.util.concurrent.TimeUnit
 object Fetcher {
 
     private val client = OkHttpClient.Builder()
+        .callTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
         .build()
 
     private val HEADER = "application/json; charset=utf-8".toMediaType()

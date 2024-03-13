@@ -12,7 +12,9 @@ class DiscordEventListener : ListenerAdapter() {
         event.channel.sendTyping().queue()
 
         OpenAI.chat("[${event.member!!.effectiveName}] ${event.message.contentRaw.removePrefix("!").trim()}").let {
-            event.channel.sendMessage(it).queue()
+            val chunks = it.chunked(1900)
+            for (str in chunks)
+                event.channel.sendMessage(str).queue()
         }
 
     }
