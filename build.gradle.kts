@@ -26,6 +26,10 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
+tasks.named("compileKotlin") {
+    dependsOn("generateBuildConfig")
+}
+
 tasks.test {
     useJUnitPlatform()
 }

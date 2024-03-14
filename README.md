@@ -12,7 +12,7 @@ mistralKey=
 
 Run the command
 ```bash
-./gradlew generateBuildConfig && ./gradlew build
+./gradlew build
 ```
 
 GG WP you should now be able to run the project
