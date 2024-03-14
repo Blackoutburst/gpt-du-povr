@@ -27,6 +27,5 @@ class DiscordEventListener : ListenerAdapter() {
                 AiInterface.stableDiffusion(event)
             }
         }
-
     }
 }

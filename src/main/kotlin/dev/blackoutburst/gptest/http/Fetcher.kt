@@ -19,31 +19,6 @@ object Fetcher {
 
     private val HEADER = "application/json; charset=utf-8".toMediaType()
 
-    fun get(url: String, key: String, endpoint: String, onError: () -> Unit = {}): String? {
-        return try {
-            val request = Request.Builder()
-                .url("$url/$endpoint")
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json")
-                .addHeader("Authorization", "Bearer $key")
-                .build()
-
-            client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) {
-                    response.body?.string()?.let { println(it) }
-
-                    throw IOException("Unexpected code $response")
-                }
-
-                response.body?.string() ?: throw IOException("Unexpected null response body")
-            }
-        } catch (e: IOException) {
-            onError()
-            e.printStackTrace()
-            null
-        }
-    }
-
     fun post(url: String, key: String, endpoint: String, json: String, onError: () -> Unit = {}): String? {
         return try {
             val body = json.toRequestBody(HEADER)

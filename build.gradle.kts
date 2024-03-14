@@ -21,6 +21,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
+    implementation("org.slf4j:slf4j-simple:2.0.12")
+
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
